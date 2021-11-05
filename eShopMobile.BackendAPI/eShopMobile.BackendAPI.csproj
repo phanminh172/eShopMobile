@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShopMobile.Application\eShopMobile.Application.csproj" />
+    <ProjectReference Include="..\eShopMobile.Data\eShopMobile.Data.csproj" />
+    <ProjectReference Include="..\eShopMobile.ViewModels\eShopMobile.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
