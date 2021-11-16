@@ -1,12 +1,9 @@
-﻿using eShopMobile.Application.Catalog.Products.DTO;
-using eShopMobile.Application.Catalog.Products.DTO.Public;
-using eShopMobile.Application.CommonDTO;
-using eShopMobile.Data.EF;
+﻿using eShopMobile.Data.EF;
+using eShopMobile.ViewModels.Catalog.Products;
+using eShopMobile.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eShopMobile.Application.Catalog.Products
@@ -18,7 +15,7 @@ namespace eShopMobile.Application.Catalog.Products
         {
             _context = context;
         }
-        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
         {
             //join
             var query = from p in _context.Products
@@ -61,5 +58,7 @@ namespace eShopMobile.Application.Catalog.Products
             };
             return pagedResult;
         }
+
+       
     }
 }
