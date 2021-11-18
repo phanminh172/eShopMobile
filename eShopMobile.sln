@@ -13,7 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMobile.ViewModels", "e
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.Utilities", "eShopUtilities\eShopMobile.Utilities.csproj", "{2863AE26-EEE5-4D27-8350-3102024F0600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMobile.BackendAPI", "eShopMobile.BackendAPI\eShopMobile.BackendAPI.csproj", "{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.BackendAPI", "eShopMobile.BackendAPI\eShopMobile.BackendAPI.csproj", "{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution Items", "0.Solution Items", "{74DB50F1-546B-4DA9-82FD-481EF181C0A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infrastructure", "1.Infrastructure", "{CB553F86-130F-450A-9907-222ED5AC02EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{52367B61-D071-4F04-B400-7778D080C1A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{6553CBC9-156E-4C1F-A636-84E71210FA30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +56,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D0E24453-9F53-4152-9C54-5DCC7AB4E465} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
+		{602B6EC3-8856-4D18-9326-95D8A5D0B32C} = {52367B61-D071-4F04-B400-7778D080C1A4}
+		{6B9F0878-157A-498E-911F-87E76E7F5319} = {52367B61-D071-4F04-B400-7778D080C1A4}
+		{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F} = {CB553F86-130F-450A-9907-222ED5AC02EB}
+		{2863AE26-EEE5-4D27-8350-3102024F0600} = {CB553F86-130F-450A-9907-222ED5AC02EB}
+		{F17B5067-9AFC-4C2E-B044-1599CCDE11FD} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75BA240C-CE5C-4E9D-807A-491BCB040D70}
