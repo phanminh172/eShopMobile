@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eShopMobile.AdminApp\eShopMobile.AdminApp.csproj" />
+    <ProjectReference Include="..\eShopMobile.BackendAPI\eShopMobile.BackendAPI.csproj" />
+  </ItemGroup>
+
 </Project>

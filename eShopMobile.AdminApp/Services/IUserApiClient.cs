@@ -3,15 +3,15 @@ using eShopMobile.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopMobile.Application.System.Users
+namespace eShopMobile.AdminApp.Services
 {
-    public interface IUserService
+    public interface IUserApiClient
     {
         Task<string> Authenticate(LoginRequest request);
-        Task<bool> Register(RegisterRequest request);
-        Task<PagedResult<UserViewModel>> GetUsersPaging(GetUserPagingRequest request);
+
+        Task<PagedResult<UserViewModel>> GetUsersPagings(GetUserPagingRequest request);
+        Task<bool> RegisterUser(RegisterRequest registerRequest);
     }
 }

@@ -12,6 +12,7 @@ namespace eShopMobile.BackendAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -22,7 +23,7 @@ namespace eShopMobile.BackendAPI.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromForm] LoginRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -33,12 +34,16 @@ namespace eShopMobile.BackendAPI.Controllers
             {
                 return BadRequest("Username or password is incorrect");
             }
-            return Ok(new { token = resultToken });
+            //else
+            //{
+            //    HttpContext.Session.SetString("Token", resultToken);
+            //}
+            return Ok(resultToken);
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -51,5 +56,15 @@ namespace eShopMobile.BackendAPI.Controllers
             }
             return Ok();
         }
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetUserPagingRequest request)
+        {
+            var users = await _userService.GetUsersPaging(request);
+            return Ok(users);
+        }
+
+
     }
+
 }

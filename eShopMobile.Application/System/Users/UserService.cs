@@ -12,6 +12,8 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+using eShopMobile.ViewModels.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace eShopMobile.Application.System.Users
 {
@@ -32,7 +34,10 @@ namespace eShopMobile.Application.System.Users
         public async Task<string> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) throw new EShopException("Cannot find valid user");
+            if (user == null)
+            {
+                return null;
+            }   
 
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
@@ -45,7 +50,8 @@ namespace eShopMobile.Application.System.Users
             {
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.GivenName,user.FirstName),
-                new Claim(ClaimTypes.Role,string.Join(";",roles))
+                new Claim(ClaimTypes.Role,string.Join(";",roles)),
+                new Claim(ClaimTypes.Name,request.UserName)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -60,16 +66,49 @@ namespace eShopMobile.Application.System.Users
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<PagedResult<UserViewModel>> GetUsersPaging(GetUserPagingRequest request)
+        {
+            var query = _userManager.Users;
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.UserName.Contains(request.Keyword)
+                 || x.PhoneNumber.Contains(request.Keyword));
+            }
+
+            //3. Paging
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new UserViewModel()
+                {
+                    Email = x.Email,
+                    PhoneNumber = x.PhoneNumber,
+                    UserName = x.UserName,
+                    FirstName = x.FirstName,
+                    Id = x.Id,
+                    LastName = x.LastName
+                }).ToListAsync();
+
+            //4. Select and projection
+            var pagedResult = new PagedResult<UserViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = data
+            };
+            return pagedResult;
+        }
+
         public async Task<bool> Register(RegisterRequest request)
         {
             var user = new AppUser()
             {
-                Dob=request.Dob,
-                Email=request.Email,
-                FirstName=request.FirstName,
-                LastName=request.LastName,
-                UserName=request.UserName,
-                PhoneNumber=request.PhoneNumber
+                Dob = request.Dob,
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                UserName = request.UserName,
+                PhoneNumber = request.PhoneNumber
             };
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
