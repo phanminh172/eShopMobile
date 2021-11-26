@@ -3,6 +3,7 @@ using eShopMobile.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,25 +21,20 @@ namespace eShopMobile.BackendAPI.Controllers
         {
             _userService = userService;
         }
-
         [HttpPost("authenticate")]
         [AllowAnonymous]
         public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
-            var resultToken = await _userService.Authenticate(request);
-            if (string.IsNullOrEmpty(resultToken))
+
+            var result = await _userService.Authenticate(request);
+
+            if (string.IsNullOrEmpty(result.ResultObj))
             {
-                return BadRequest("Username or password is incorrect");
+                return BadRequest(result);
             }
-            //else
-            //{
-            //    HttpContext.Session.SetString("Token", resultToken);
-            //}
-            return Ok(resultToken);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -46,15 +42,29 @@ namespace eShopMobile.BackendAPI.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.Register(request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id,[FromBody] UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = await _userService.Register(request);
-            if (!result)
+            var result = await _userService.Update(id,request);
+            if (!result.IsSuccessed)
             {
-                return BadRequest("Register is not successful");
+                return BadRequest(result);
             }
-            return Ok();
+            return Ok(result);
         }
 
         [HttpGet("paging")]
@@ -64,7 +74,18 @@ namespace eShopMobile.BackendAPI.Controllers
             return Ok(users);
         }
 
-
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var users = await _userService.GetById(id);
+            return Ok(users);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _userService.Delete(id);
+            return Ok(result);
+        }
     }
 
 }
