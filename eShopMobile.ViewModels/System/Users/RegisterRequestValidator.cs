@@ -11,14 +11,19 @@ namespace eShopMobile.ViewModels.System.Users
     {
         public RegisterRequestValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("Firstname is required")
-                .MaximumLength(200).WithMessage("Firstname has exceeded maximum length 200");
-            RuleFor(x => x.LastName).NotEmpty().WithMessage("Firstname is required")
-                .MaximumLength(200).WithMessage("Lastname has exceeded maximum length 200");
-            RuleFor(x => x.Dob).GreaterThan(DateTime.Now.AddYears(-200)).WithMessage("Birthday cannot greater than 200 years");
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First name is required")
+                .MaximumLength(200).WithMessage("First name can not over 200 characters");
+
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("Last name is required")
+                .MaximumLength(200).WithMessage("Last name can not over 200 characters");
+
+            RuleFor(x => x.Dob).NotEmpty().WithMessage("Birthday is required")
+                .GreaterThan(DateTime.Now.AddYears(-100)).WithMessage("Birthday cannot greater than 100 years");
+
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required")
                 .Matches(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")
                 .WithMessage("Email format not match");
+
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone number is required");
 
             RuleFor(x => x.UserName).NotEmpty().WithMessage("User name is required");
