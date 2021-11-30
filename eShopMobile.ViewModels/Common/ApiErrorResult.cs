@@ -14,6 +14,7 @@ namespace eShopMobile.ViewModels.Common
         {
         }
 
+        }
         public ApiErrorResult(string message)
         {
             IsSuccessed = false;
