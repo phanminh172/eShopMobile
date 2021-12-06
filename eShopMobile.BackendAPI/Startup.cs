@@ -1,5 +1,6 @@
 using eShopMobile.Application.Catalog.Products;
 using eShopMobile.Application.Common;
+using eShopMobile.Application.System.Languages;
 using eShopMobile.Application.System.Roles;
 using eShopMobile.Application.System.Users;
 using eShopMobile.Data.EF;
@@ -45,17 +46,22 @@ namespace eShopMobile.BackendAPI
                 .AddEntityFrameworkStores<EShopDbContext>()
                 .AddDefaultTokenProviders();
             // declare DI
-            services.AddTransient<IProductService, ProductService>();
+
             services.AddTransient<IStorageService, FileStorageService>();
+
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IUserService, UserService>();
 
-            services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
-            services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
-            services.AddControllers().AddFluentValidation();
+
+            //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+            services.AddControllers()
+               .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {

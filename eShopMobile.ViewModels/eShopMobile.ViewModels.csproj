@@ -250,6 +250,7 @@
     <Compile Include="Common\PagingRequestBase.cs" />
     <Compile Include="Common\SelectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Languages\LanguageViewModel.cs" />
     <Compile Include="System\Roles\RoleViewModel.cs" />
     <Compile Include="System\Users\GetUserPagingRequest.cs" />
     <Compile Include="System\Users\LoginRequest.cs" />

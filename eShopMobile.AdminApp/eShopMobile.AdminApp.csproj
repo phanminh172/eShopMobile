@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eShopMobile.ViewModels\eShopMobile.ViewModels.csproj" />
+    <ProjectReference Include="..\eShopUtilities\eShopMobile.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

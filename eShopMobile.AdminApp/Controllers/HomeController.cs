@@ -1,12 +1,9 @@
 ﻿using eShopMobile.AdminApp.Models;
-using Microsoft.AspNetCore.Authorization;
+using eShopMobile.Utilities.Constants;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eShopMobile.AdminApp.Controllers
 {
@@ -34,6 +31,13 @@ namespace eShopMobile.AdminApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult Language(NavigaitonViewModel viewModel)
+        {
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId, viewModel.CurrentLanguageId);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -22,14 +22,7 @@ namespace eShopMobile.BackendAPI.Controllers
             _productService = productService;
         }
 
-        ////localhost:port/product
-        //[HttpGet("{languageId}")]
-        //public async Task<IActionResult> Get(string languageId)
-        //{
-        //    var products = await _publicProductService.GetAll(languageId);
-        //    return Ok(products);
-        //}
-
+ 
         //localhost:port/product?pageIndex=&?pageSize=10&CategotyId=
         [HttpGet("{languageId}")]
         public async Task<IActionResult> GetAllPaging(string languageId, [FromQuery] GetPublicProductPagingRequest request)
