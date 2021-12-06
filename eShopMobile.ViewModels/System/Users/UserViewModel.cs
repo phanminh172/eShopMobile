@@ -18,9 +18,11 @@ namespace eShopMobile.ViewModels.System.Users
         public string PhoneNumber { get; set; }
         [Display(Name = "Tài khoản")]
         public string UserName { get; set; }
-        
+
         public string Email { get; set; }
         [Display(Name = "Ngày Sinh")]
+        [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }

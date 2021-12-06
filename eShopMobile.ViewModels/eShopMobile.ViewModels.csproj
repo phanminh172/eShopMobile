@@ -248,12 +248,15 @@
     <Compile Include="Common\PagedResult.cs" />
     <Compile Include="Common\PagedResultBase.cs" />
     <Compile Include="Common\PagingRequestBase.cs" />
+    <Compile Include="Common\SelectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Roles\RoleViewModel.cs" />
     <Compile Include="System\Users\GetUserPagingRequest.cs" />
     <Compile Include="System\Users\LoginRequest.cs" />
     <Compile Include="System\Users\LoginRequestValidator.cs" />
     <Compile Include="System\Users\RegisterRequest.cs" />
     <Compile Include="System\Users\RegisterRequestValidator.cs" />
+    <Compile Include="System\Users\RoleAssignRequest.cs" />
     <Compile Include="System\Users\UserDeleteRequest.cs" />
     <Compile Include="System\Users\UserUpdateRequest.cs" />
     <Compile Include="System\Users\UserViewModel.cs" />

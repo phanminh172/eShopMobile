@@ -25,8 +25,8 @@ namespace eShopMobile.Application.System.Users
         private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _config;
 
-        public UserService(UserManager<AppUser> userManager, 
-            SignInManager<AppUser> signInManager, 
+        public UserService(UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
             RoleManager<AppRole> roleManager,
             IConfiguration config)
         {
@@ -72,8 +72,8 @@ namespace eShopMobile.Application.System.Users
             {
                 return new ApiErrorResult<bool>("User không tồn tại");
             }
-            var result=await _userManager.DeleteAsync(user);
-            if(result.Succeeded)
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
                 return new ApiSuccessResult<bool>();
             return new ApiErrorResult<bool>("Xoá không thành công");
         }
@@ -85,6 +85,7 @@ namespace eShopMobile.Application.System.Users
             {
                 return new ApiErrorResult<UserViewModel>("User không tồn tại");
             }
+            var roles = await _userManager.GetRolesAsync(user);
             var userViewModel = new UserViewModel()
             {
                 Email = user.Email,
@@ -93,7 +94,8 @@ namespace eShopMobile.Application.System.Users
                 FirstName = user.FirstName,
                 Id = user.Id,
                 LastName = user.LastName,
-                UserName=user.UserName
+                UserName = user.UserName,
+                Roles=roles
             };
             return new ApiSuccessResult<UserViewModel>(userViewModel);
         }
@@ -126,8 +128,8 @@ namespace eShopMobile.Application.System.Users
             var pagedResult = new PagedResult<UserViewModel>()
             {
                 TotalRecords = totalRow,
-                PageIndex=request.PageIndex,
-                PageSize=request.PageSize,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
             return new ApiSuccessResult<PagedResult<UserViewModel>>(pagedResult);
@@ -162,10 +164,41 @@ namespace eShopMobile.Application.System.Users
             return new ApiErrorResult<bool>("Đăng ký không thành công");
         }
 
+        public async Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>("Tài khoản khong tồn tại");
+            }
+            var removedRoles = request.Roles.Where(x => x.Selected == false).Select(x => x.Name).ToList();
+            foreach (var roleName in removedRoles)
+            {
+                if (await _userManager.IsInRoleAsync(user, roleName) == true)
+                {
+                    await _userManager.RemoveFromRoleAsync(user, roleName);
+                }
+
+            }
+            await _userManager.RemoveFromRolesAsync(user, removedRoles);
+
+            var adddRoles = request.Roles.Where(x => x.Selected).Select(x => x.Name).ToList();
+            foreach (var roleName in adddRoles)
+            {
+                if (await _userManager.IsInRoleAsync(user, roleName) == false)
+                {
+                    await _userManager.AddToRoleAsync(user, roleName);
+                }
+
+            }
+            return new ApiSuccessResult<bool>();
+
+        }
+
         public async Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request)
         {
-           
-            if (await _userManager.Users.AnyAsync(x=>x.Email==request.Email && x.Id!=id))
+
+            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
             {
                 return new ApiErrorResult<bool>("Emai đã tồn tại");
             }
@@ -176,7 +209,7 @@ namespace eShopMobile.Application.System.Users
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
             user.PhoneNumber = request.PhoneNumber;
-            
+
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
@@ -185,6 +218,6 @@ namespace eShopMobile.Application.System.Users
             return new ApiErrorResult<bool>("Cập nhật không thành công");
         }
 
-       
+
     }
 }
