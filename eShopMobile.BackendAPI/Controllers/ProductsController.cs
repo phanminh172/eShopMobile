@@ -24,10 +24,17 @@ namespace eShopMobile.BackendAPI.Controllers
 
  
         //localhost:port/product?pageIndex=&?pageSize=10&CategotyId=
-        [HttpGet("{languageId}")]
-        public async Task<IActionResult> GetAllPaging(string languageId, [FromQuery] GetPublicProductPagingRequest request)
+        //[HttpGet("{languageId}")]
+        //public async Task<IActionResult> GetAllPaging(string languageId, [FromQuery] GetPublicProductPagingRequest request)
+        //{
+        //    var products = await _productService.GetAllByCategoryId(languageId, request);
+        //    return Ok(products);
+        //}
+
+        [HttpGet("{paging}")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageProductPagingRequest request)
         {
-            var products = await _productService.GetAllByCategoryId(languageId, request);
+            var products = await _productService.GetAllPaging(request);
             return Ok(products);
         }
 
@@ -44,6 +51,7 @@ namespace eShopMobile.BackendAPI.Controllers
         }
 
         [HttpPost]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -52,11 +60,11 @@ namespace eShopMobile.BackendAPI.Controllers
             }
             var productId = await _productService.Create(request);
             if (productId == 0)
-            {
                 return BadRequest();
-            }
+
             var product = await _productService.GetById(productId, request.LanguageId);
-            return Created(nameof(GetById), product);
+
+            return CreatedAtAction(nameof(GetById), new { id = productId }, product);
         }
 
         [HttpPut]
