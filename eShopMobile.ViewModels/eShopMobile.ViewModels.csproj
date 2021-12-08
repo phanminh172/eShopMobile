@@ -234,11 +234,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalog\Categories\CategoryViewModel.cs" />
     <Compile Include="Catalog\ProductImages\ProductImageCreateRequest.cs" />
     <Compile Include="Catalog\ProductImages\ProductImageUpdateRequest.cs" />
+    <Compile Include="Catalog\Products\CategoryAssignRequest.cs" />
     <Compile Include="Catalog\Products\GetManageProductPagingRequest.cs" />
     <Compile Include="Catalog\Products\GetPublicProductPagingRequest.cs" />
     <Compile Include="Catalog\Products\ProductCreateRequest.cs" />
+    <Compile Include="Catalog\Products\ProductDeleteRequest.cs" />
     <Compile Include="Catalog\Products\ProductUpdateRequest.cs" />
     <Compile Include="Catalog\Products\ProductViewModel.cs" />
     <Compile Include="Catalog\ProductImages\ProductImageViewModel.cs" />
@@ -265,6 +268,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Products\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

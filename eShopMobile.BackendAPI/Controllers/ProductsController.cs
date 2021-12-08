@@ -50,6 +50,22 @@ namespace eShopMobile.BackendAPI.Controllers
             return Ok(products);
         }
 
+        //[HttpGet("featured/{languageId}/{take}")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetFeaturedProducts(int take, string languageId)
+        //{
+        //    var products = await _productService.GetFeaturedProducts(languageId, take);
+        //    return Ok(products);
+        //}
+
+        //[HttpGet("latest/{languageId}/{take}")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetLatestProducts(int take, string languageId)
+        //{
+        //    var products = await _productService.GetLatestProducts(languageId, take);
+        //    return Ok(products);
+        //}
+
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
@@ -159,6 +175,21 @@ namespace eShopMobile.BackendAPI.Controllers
                 return BadRequest("Cannot find anything!");
             }
             return Ok(image);
+        }
+
+        [HttpPut("{id}/categories")]
+        [Authorize]
+        public async Task<IActionResult> CategoryAssign(int id, [FromBody] CategoryAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _productService.CategoryAssign(id, request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
     }
 }

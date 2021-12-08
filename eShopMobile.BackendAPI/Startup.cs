@@ -1,3 +1,4 @@
+using eShopMobile.Application.Catalog.Categories;
 using eShopMobile.Application.Catalog.Products;
 using eShopMobile.Application.Common;
 using eShopMobile.Application.System.Languages;
@@ -56,6 +57,7 @@ namespace eShopMobile.BackendAPI
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
