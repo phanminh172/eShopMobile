@@ -4,16 +4,15 @@ using eShopMobile.Application.Common;
 using eShopMobile.Application.System.Languages;
 using eShopMobile.Application.System.Roles;
 using eShopMobile.Application.System.Users;
+using eShopMobile.Application.Utilities;
 using eShopMobile.Data.EF;
 using eShopMobile.Data.Entity;
 using eShopMobile.Utilities.Constants;
 using eShopMobile.ViewModels.System.Users;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,10 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eShopMobile.BackendAPI
 {
@@ -58,7 +54,7 @@ namespace eShopMobile.BackendAPI
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
-
+            services.AddTransient<ISlideService, SlideService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();

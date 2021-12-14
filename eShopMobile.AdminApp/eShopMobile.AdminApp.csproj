@@ -17,7 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eShopMobile.ViewModels\eShopMobile.ViewModels.csproj" />
-    <ProjectReference Include="..\eShopUtilities\eShopMobile.Utilities.csproj" />
+    <ProjectReference Include="..\eShopMoblie.ApiIntegration\eShopMoblie.ApiIntegration.csproj" />
+    <ProjectReference Include="..\eShopMobile.Utilities\eShopMobile.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

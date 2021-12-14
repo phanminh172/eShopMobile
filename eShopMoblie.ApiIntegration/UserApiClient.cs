@@ -10,7 +10,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-namespace eShopMobile.AdminApp.Services
+
+namespace eShopMobile.ApiIntegration
 {
     public class UserApiClient : IUserApiClient
     {
@@ -19,8 +20,8 @@ namespace eShopMobile.AdminApp.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserApiClient(IHttpClientFactory httpClientFactory,
-                    IHttpContextAccessor httpContextAccessor,
-                     IConfiguration configuration)
+                   IHttpContextAccessor httpContextAccessor,
+                    IConfiguration configuration)
         {
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
@@ -39,7 +40,6 @@ namespace eShopMobile.AdminApp.Services
             {
                 return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(await response.Content.ReadAsStringAsync());
             }
-
 
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
         }
@@ -71,7 +71,6 @@ namespace eShopMobile.AdminApp.Services
 
             return JsonConvert.DeserializeObject<ApiErrorResult<UserViewModel>>(body);
         }
-
 
         public async Task<ApiResult<PagedResult<UserViewModel>>> GetUsersPagings(GetUserPagingRequest request)
         {

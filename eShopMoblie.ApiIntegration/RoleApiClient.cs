@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace eShopMobile.AdminApp.Services
+namespace eShopMobile.ApiIntegration
 {
     public class RoleApiClient : IRoleApiClient
     {
@@ -19,8 +19,8 @@ namespace eShopMobile.AdminApp.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public RoleApiClient(IHttpClientFactory httpClientFactory,
-                    IHttpContextAccessor httpContextAccessor,
-                     IConfiguration configuration)
+                   IHttpContextAccessor httpContextAccessor,
+                    IConfiguration configuration)
         {
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;

@@ -4,11 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace eShopMobile.AdminApp.Services
+namespace eShopMoblie.ApiIntegration
 {
     public class BaseApiClient
     {
@@ -17,8 +18,8 @@ namespace eShopMobile.AdminApp.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         protected BaseApiClient(IHttpClientFactory httpClientFactory,
-                    IHttpContextAccessor httpContextAccessor,
-                     IConfiguration configuration)
+                   IHttpContextAccessor httpContextAccessor,
+                    IConfiguration configuration)
         {
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
@@ -31,6 +32,7 @@ namespace eShopMobile.AdminApp.Services
                 .HttpContext
                 .Session
                 .GetString(SystemConstants.AppSettings.Token);
+
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
@@ -38,7 +40,9 @@ namespace eShopMobile.AdminApp.Services
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body, typeof(TResponse));
+                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body,
+                    typeof(TResponse));
+
                 return myDeserializedObjList;
             }
             return JsonConvert.DeserializeObject<TResponse>(body);
@@ -63,22 +67,6 @@ namespace eShopMobile.AdminApp.Services
             }
             throw new Exception(body);
         }
-        public async Task<bool> Delete(string url)
-        {
-            var sessions = _httpContextAccessor
-               .HttpContext
-               .Session
-               .GetString(SystemConstants.AppSettings.Token);
-            var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
-
-            var response = await client.DeleteAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            return false;
-        }
     }
 }
+

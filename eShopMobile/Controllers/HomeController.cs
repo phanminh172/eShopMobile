@@ -1,4 +1,5 @@
-﻿using eShopMobile.WebApp.Models;
+﻿using eShopMobile.ApiIntegration;
+using eShopMobile.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,15 +15,21 @@ namespace eShopMobile.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ISlideApiClient _slideApiClient;
+        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient)
         {
             _logger = logger;
+            _slideApiClient = slideApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new HomeViewModel()
+            {
+                Slides = await _slideApiClient.GetAll()
+            };
+            
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

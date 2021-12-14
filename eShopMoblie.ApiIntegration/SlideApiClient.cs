@@ -1,4 +1,5 @@
-﻿using eShopMobile.ViewModels.Catalog.Categories;
+﻿using eShopMobile.ViewModels.Utilities.Slides;
+using eShopMoblie.ApiIntegration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -7,20 +8,20 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace eShopMobile.AdminApp.Services
+namespace eShopMobile.ApiIntegration
 {
-    public class CategoryApiClient : BaseApiClient, ICategoryApiClient
+    public class SlideApiClient : BaseApiClient, ISlideApiClient
     {
-        public CategoryApiClient(IHttpClientFactory httpClientFactory,
+        public SlideApiClient(IHttpClientFactory httpClientFactory,
                    IHttpContextAccessor httpContextAccessor,
                     IConfiguration configuration)
             : base(httpClientFactory, httpContextAccessor, configuration)
         {
         }
 
-        public async Task<List<CategoryViewModel>> GetAll(string languageId)
+        public async Task<List<SlideViewModel>> GetAll()
         {
-            return await GetListAsync<CategoryViewModel>("/api/categories?languageId=" + languageId);
+            return await GetListAsync<SlideViewModel>("/api/slides");
         }
     }
 }

@@ -264,6 +264,7 @@
     <Compile Include="System\Users\UserDeleteRequest.cs" />
     <Compile Include="System\Users\UserUpdateRequest.cs" />
     <Compile Include="System\Users\UserViewModel.cs" />
+    <Compile Include="Utilities\Slides\SlideViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

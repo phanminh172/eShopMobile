@@ -1,4 +1,4 @@
-﻿using eShopMobile.AdminApp.Services;
+﻿using eShopMobile.ApiIntegration;
 using eShopMobile.ViewModels.Common;
 using eShopMobile.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
