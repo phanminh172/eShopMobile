@@ -3,18 +3,15 @@ using eShopMobile.Data.Entity;
 using eShopMobile.ViewModels.System.Users;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using eShopMobile.Utilities.Exceptions;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using eShopMobile.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 
 namespace eShopMobile.Application.System.Users
 {

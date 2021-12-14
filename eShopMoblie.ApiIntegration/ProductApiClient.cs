@@ -1,4 +1,4 @@
-﻿using eShopMobile.Utilities.Constants;
+﻿using eShopMobile.Ultilities.Constants;
 using eShopMobile.ViewModels.Catalog.Products;
 using eShopMobile.ViewModels.Common;
 using eShopMoblie.ApiIntegration;

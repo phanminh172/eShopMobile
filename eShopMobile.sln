@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.WebApp", "eShopMobile\eShopMobile.WebApp.csproj", "{D0E24453-9F53-4152-9C54-5DCC7AB4E465}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.Data", "eShopMobile.Data\eShopMobile.Data.csproj", "{602B6EC3-8856-4D18-9326-95D8A5D0B32C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.Application", "eShopMobile.Application\eShopMobile.Application.csproj", "{6B9F0878-157A-498E-911F-87E76E7F5319}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMobile.ViewModels", "eShopMobile.ViewModels\eShopMobile.ViewModels.csproj", "{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.Utilities", "eShopUtilities\eShopMobile.Utilities.csproj", "{2863AE26-EEE5-4D27-8350-3102024F0600}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.BackendAPI", "eShopMobile.BackendAPI\eShopMobile.BackendAPI.csproj", "{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}"
 EndProject
@@ -25,7 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{6553CB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMobile.AdminApp", "eShopMobile.AdminApp\eShopMobile.AdminApp.csproj", "{16B1D2A0-9AEA-4C58-ABCA-296AA51C1BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMoblie.ApiIntegration", "eShopMoblie.ApiIntegration\eShopMoblie.ApiIntegration.csproj", "{A2B54AFB-769F-47C3-99EE-03F84B3554A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopMoblie.ApiIntegration", "eShopMoblie.ApiIntegration\eShopMoblie.ApiIntegration.csproj", "{A2B54AFB-769F-47C3-99EE-03F84B3554A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMobile.WebApp", "eShopMobile.WebApp\eShopMobile.WebApp.csproj", "{2E04D13E-FE03-4B71-A80C-DCF6053B80AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopMobile.Ultilities", "eShopMobile.Ultilities\eShopMobile.Ultilities.csproj", "{5609D212-877A-4F4B-8B62-729FA4F7BE4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D0E24453-9F53-4152-9C54-5DCC7AB4E465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0E24453-9F53-4152-9C54-5DCC7AB4E465}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0E24453-9F53-4152-9C54-5DCC7AB4E465}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0E24453-9F53-4152-9C54-5DCC7AB4E465}.Release|Any CPU.Build.0 = Release|Any CPU
 		{602B6EC3-8856-4D18-9326-95D8A5D0B32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{602B6EC3-8856-4D18-9326-95D8A5D0B32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{602B6EC3-8856-4D18-9326-95D8A5D0B32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +45,6 @@ Global
 		{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2863AE26-EEE5-4D27-8350-3102024F0600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2863AE26-EEE5-4D27-8350-3102024F0600}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2863AE26-EEE5-4D27-8350-3102024F0600}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2863AE26-EEE5-4D27-8350-3102024F0600}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F17B5067-9AFC-4C2E-B044-1599CCDE11FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,19 +57,27 @@ Global
 		{A2B54AFB-769F-47C3-99EE-03F84B3554A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B54AFB-769F-47C3-99EE-03F84B3554A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B54AFB-769F-47C3-99EE-03F84B3554A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E04D13E-FE03-4B71-A80C-DCF6053B80AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E04D13E-FE03-4B71-A80C-DCF6053B80AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E04D13E-FE03-4B71-A80C-DCF6053B80AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E04D13E-FE03-4B71-A80C-DCF6053B80AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5609D212-877A-4F4B-8B62-729FA4F7BE4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5609D212-877A-4F4B-8B62-729FA4F7BE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5609D212-877A-4F4B-8B62-729FA4F7BE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5609D212-877A-4F4B-8B62-729FA4F7BE4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D0E24453-9F53-4152-9C54-5DCC7AB4E465} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
 		{602B6EC3-8856-4D18-9326-95D8A5D0B32C} = {52367B61-D071-4F04-B400-7778D080C1A4}
 		{6B9F0878-157A-498E-911F-87E76E7F5319} = {52367B61-D071-4F04-B400-7778D080C1A4}
 		{118F0FFC-2356-42F7-814B-CD7BDD1A7C0F} = {CB553F86-130F-450A-9907-222ED5AC02EB}
-		{2863AE26-EEE5-4D27-8350-3102024F0600} = {CB553F86-130F-450A-9907-222ED5AC02EB}
 		{F17B5067-9AFC-4C2E-B044-1599CCDE11FD} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
 		{16B1D2A0-9AEA-4C58-ABCA-296AA51C1BE1} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
 		{A2B54AFB-769F-47C3-99EE-03F84B3554A0} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
+		{2E04D13E-FE03-4B71-A80C-DCF6053B80AE} = {6553CBC9-156E-4C1F-A636-84E71210FA30}
+		{5609D212-877A-4F4B-8B62-729FA4F7BE4E} = {CB553F86-130F-450A-9907-222ED5AC02EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75BA240C-CE5C-4E9D-807A-491BCB040D70}

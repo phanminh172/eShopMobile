@@ -1,5 +1,5 @@
 ﻿using eShopMobile.ApiIntegration;
-using eShopMobile.Utilities.Constants;
+using eShopMobile.Ultilities.Constants;
 using eShopMobile.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

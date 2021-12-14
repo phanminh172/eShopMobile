@@ -7,7 +7,7 @@ using eShopMobile.Application.System.Users;
 using eShopMobile.Application.Utilities;
 using eShopMobile.Data.EF;
 using eShopMobile.Data.Entity;
-using eShopMobile.Utilities.Constants;
+using eShopMobile.Ultilities.Constants;
 using eShopMobile.ViewModels.System.Users;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

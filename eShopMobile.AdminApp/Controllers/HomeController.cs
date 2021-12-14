@@ -1,5 +1,5 @@
 ﻿using eShopMobile.AdminApp.Models;
-using eShopMobile.Utilities.Constants;
+using eShopMobile.Ultilities.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
