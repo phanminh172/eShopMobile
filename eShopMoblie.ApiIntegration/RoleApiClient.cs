@@ -1,5 +1,7 @@
-﻿using eShopMobile.ViewModels.Common;
+﻿using eShopMobile.ViewModels.Catalog.Products;
+using eShopMobile.ViewModels.Common;
 using eShopMobile.ViewModels.System.Roles;
+using eShopMoblie.ApiIntegration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace eShopMobile.ApiIntegration
 {
-    public class RoleApiClient : IRoleApiClient
+    public class RoleApiClient : BaseApiClient, IRoleApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
@@ -21,10 +23,21 @@ namespace eShopMobile.ApiIntegration
         public RoleApiClient(IHttpClientFactory httpClientFactory,
                    IHttpContextAccessor httpContextAccessor,
                     IConfiguration configuration)
+            :base(httpClientFactory, httpContextAccessor, configuration)
         {
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
+        }
+
+        public Task<bool> CreateRole(RoleCreateRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> DeleteRole(Guid id)
+        {
+            return await Delete($"/api/products/" + id);
         }
 
         public async Task<ApiResult<List<RoleViewModel>>> GetAll()
@@ -41,6 +54,26 @@ namespace eShopMobile.ApiIntegration
                 return new ApiSuccessResult<List<RoleViewModel>>(myDeserializedObjList);
             }
             return JsonConvert.DeserializeObject<ApiErrorResult<List<RoleViewModel>>>(body);
+        }
+
+        public Task<RoleViewModel> GetById(Guid id, string languageId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<PagedResult<RoleViewModel>> GetPagings(GetManageRolePagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<RoleViewModel>>(
+                $"/api/roles/paging?pageIndex={request.PageIndex}" +
+                $"&pageSize={request.PageSize}" +
+                $"&keyword={request.Keyword}");
+
+            return data;
+        }
+
+        public Task<bool> UpdateRole(RoleUpdateRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

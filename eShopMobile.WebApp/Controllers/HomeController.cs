@@ -37,6 +37,8 @@ namespace eShopMobile.WebApp.Controllers
             {
                 Slides = await _slideApiClient.GetAll(),
                 //FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSettings.NumberOfFeaturedProducts)
+                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSettings.NumberOfFeaturedProducts),
+                LatestProducts = await _productApiClient.GetLatestProducts(culture, SystemConstants.ProductSettings.NumberOfLatestProducts),
             };
 
             return View(viewModel);

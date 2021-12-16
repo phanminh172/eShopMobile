@@ -180,7 +180,7 @@ namespace eShopMobile.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "9214a296-62ae-4152-aea9-2b239c9778eb",
+                            ConcurrencyStamp = "92d83c9f-c539-430c-8aa5-e82676175bbc",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +257,7 @@ namespace eShopMobile.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "638fff8c-79f3-4b25-8f0f-310f710d120c",
+                            ConcurrencyStamp = "91bfcb32-06d0-4295-b016-3eef7e7937b8",
                             Dob = new DateTime(1999, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace eShopMobile.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBwhO87XX4uhprl7aFuYmxZKWGCv1+3Qzj6m5X7BRaj4nKccQH/8m8MoHw3QyesHoQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENUuW0NOBYUvgSVdSZNQCPpCf7tFz822u0jj/ExQL1YMsKjC3tCFxhg8xzo4q02jwg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -614,7 +614,7 @@ namespace eShopMobile.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 12, 14, 15, 34, 38, 461, DateTimeKind.Local).AddTicks(7812),
+                            DateCreated = new DateTime(2021, 12, 16, 0, 42, 13, 277, DateTimeKind.Local).AddTicks(8280),
                             OriginalPrice = 20000000m,
                             Price = 0m,
                             Stock = 0,
@@ -644,7 +644,7 @@ namespace eShopMobile.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDefauft")
+                    b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
 
                     b.Property<int>("ProductId")

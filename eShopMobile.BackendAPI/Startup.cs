@@ -47,13 +47,15 @@ namespace eShopMobile.BackendAPI
             services.AddTransient<IStorageService, FileStorageService>();
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ICategoryService, CategoryService>();
+
             services.AddTransient<ISlideService, SlideService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();

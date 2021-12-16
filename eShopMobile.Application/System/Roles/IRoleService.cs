@@ -10,5 +10,9 @@ namespace eShopMobile.Application.System.Roles
     public  interface IRoleService
     {
         Task<List<RoleViewModel>> GetAll();
+        Task<int> Create(RoleCreateRequest request);
+        Task<int> Update(RoleUpdateRequest request);
+        Task<int> Delete(int productId);
+        Task<RoleViewModel> GetById(Guid roleId);
     }
 }

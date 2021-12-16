@@ -30,7 +30,7 @@ namespace eShopMobile.AdminApp.Controllers
             _configuration = configuration;
             _roleApiClient = roleApiClient;
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 1)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
             var request = new GetUserPagingRequest()
             {
@@ -69,6 +69,7 @@ namespace eShopMobile.AdminApp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(RegisterRequest request)
         {
@@ -78,9 +79,10 @@ namespace eShopMobile.AdminApp.Controllers
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Thêm mới thành công";
+                TempData["result"] = "Thêm mới người dùng thành công";
                 return RedirectToAction("Index");
             }
+
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
